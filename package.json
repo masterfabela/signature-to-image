@@ -10,8 +10,13 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
+    "@smui/button": "^6.0.0-beta.16",
+    "@smui/card": "^6.0.0-beta.16",
+    "@smui/slider": "^6.0.0-beta.16",
     "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "@tsconfig/svelte": "^3.0.0",
+    "sass": "^1.53.0",
+    "signature_pad": "^4.0.5",
     "svelte": "^3.49.0",
     "svelte-check": "^2.8.0",
     "svelte-preprocess": "^4.10.7",
