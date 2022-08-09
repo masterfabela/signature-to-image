@@ -9,6 +9,8 @@
   let height = 250;
   let canvas: HTMLCanvasElement;
   let signatureService: SignatureService;
+  //let isSignatureEmpty: boolean = true
+  
 
   const clearDraw = () => {
     signatureService.clearDraw();
@@ -18,9 +20,15 @@
     signatureService.savePNG();
   };
 
+  function checkSignatureEmpty () {
+    return signatureService?.isSignatureEmpty()
+  }
+  
+
   onMount(() => {
     signatureService = new SignatureService(canvas);
   });
+
 </script>
 
 <div class="main-layout">
@@ -30,23 +38,29 @@
     </Card>
   </div>
   <div class="options">
-    <div class="slider">
-      <Label>Height: {height}</Label>
-      <Slider bind:value={height} max={1000} min={0} />
+    <div class="sliders">
+      <div class="slider">
+        <Label>Height: {height}px</Label>
+        <Slider bind:value={height} max={1000} min={0} />
+      </div>
+      <div class="slider">
+        <span>Width: {width}px</span>
+        <Slider bind:value={width} max={1000} min={0} />
+      </div>
     </div>
-    <div class="slider">
-      <span>Width: {width}</span>
-      <Slider bind:value={width} max={1000} min={0} />
+    <div class="buttons">
+      <Button on:click={clearDraw} variant="raised">
+        <Label>CLEAR</Label>
+      </Button>
+      <Button on:click={save} variant="raised"><Label>SAVE</Label></Button>
     </div>
-    <Button on:click={clearDraw} variant="raised">
-      <Label>CLEAR</Label>
-    </Button>
-    <Button on:click={save} variant="raised"><Label>SAVE</Label></Button>
   </div>
 </div>
 
 <style lang="scss">
   .main-layout {
+    width: 100%;
+    overflow-y: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -59,16 +73,29 @@
     }
   }
   .options {
-    overflow: auto;
     background-color: #242424;
     bottom: 0;
-    height: 80px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    .slider {
-      width: 300px;
+    .sliders {
+      display: flex;
+      .slider {
+        text-align: center;
+        width: 300px;
+      }
+      @media (max-width: 599px) {
+        flex-direction: column;
+        margin-top: 40px;
+      }
+    }
+    .buttons {
+      margin-bottom: 26px;
+      &:first-child{
+        margin-right: 12px;
+      }
     }
   }
   #canvas {

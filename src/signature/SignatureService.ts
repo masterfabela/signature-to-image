@@ -35,10 +35,14 @@ export class SignatureService {
   }
 
   savePNG() {
-    if (!this.signaturePad.isEmpty()) {
+    if (!this.isSignatureEmpty) {
       this.download(this.signaturePad.toDataURL(), "signature.png")
     }
   } 
+
+  isSignatureEmpty(){
+    return this.signaturePad.isEmpty()
+  }
 
   clearDraw(){
     this.signaturePad.clear()

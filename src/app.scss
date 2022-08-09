@@ -29,8 +29,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-height: 100vh;
+  height: 90vh;
+  width: 100vw;
 }
 
 h1 {
@@ -43,8 +43,7 @@ h1 {
 }
 
 #app {
-  margin: 0;
-  text-align: center;
+  width: 100%;
 }
 
 button {
