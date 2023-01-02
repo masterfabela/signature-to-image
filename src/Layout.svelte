@@ -17,13 +17,9 @@
   };
 
   const save = () => {
+    console.log('save');
     signatureService.savePNG();
   };
-
-  function checkSignatureEmpty () {
-    return signatureService?.isSignatureEmpty()
-  }
-  
 
   onMount(() => {
     signatureService = new SignatureService(canvas);
@@ -52,7 +48,9 @@
       <Button on:click={clearDraw} variant="raised">
         <Label>CLEAR</Label>
       </Button>
-      <Button on:click={save} variant="raised"><Label>SAVE</Label></Button>
+      <Button on:click={() => {
+        save();
+      }} variant="raised"><Label>SAVE</Label></Button>
     </div>
   </div>
 </div>
@@ -65,6 +63,7 @@
     display: flex;
     flex-direction: column;
     .signature {
+      margin-top: 5rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -81,6 +80,7 @@
     justify-content: space-evenly;
     align-items: center;
     .sliders {
+      margin-top: 2rem;
       display: flex;
       .slider {
         text-align: center;
@@ -88,18 +88,26 @@
       }
       @media (max-width: 599px) {
         flex-direction: column;
-        margin-top: 40px;
+        margin-top: 2rem;
       }
     }
     .buttons {
+      display: flex;
       margin-bottom: 26px;
-      &:first-child{
-        margin-right: 12px;
-      }
+      gap: 2rem;
     }
   }
   #canvas {
     background-color: white;
     border-radius: 11px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: 599px) {
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>
