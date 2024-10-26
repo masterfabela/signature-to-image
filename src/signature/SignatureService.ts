@@ -20,7 +20,7 @@ export class SignatureService {
     return new Blob([uInt8Array], { type: contentType });
   }
 
-  private download(dataUrl: string, fileName) {
+  private download(dataUrl: string, fileName: string) {
     console.log('download');
     const blob = this.dataURLToBlob(dataUrl);
     const url = window.URL.createObjectURL(blob);
@@ -34,16 +34,18 @@ export class SignatureService {
   }
 
   savePNG() {
-    if (!this.isSignatureEmpty()) {
+    if (this.signaturePad && !this.isSignatureEmpty()) {
       this.download(this.signaturePad.toDataURL(), 'signature.png');
     }
   }
 
   isSignatureEmpty() {
-    return this.signaturePad.isEmpty();
+    return this.signaturePad && this.signaturePad.isEmpty();
   }
 
   clearDraw() {
-    this.signaturePad.clear();
+    if (this.signaturePad) {
+      this.signaturePad.clear();
+    }
   }
 }

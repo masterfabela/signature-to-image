@@ -10,7 +10,6 @@
   let canvas: HTMLCanvasElement;
   let signatureService: SignatureService;
   //let isSignatureEmpty: boolean = true
-  
 
   const clearDraw = () => {
     signatureService.clearDraw();
@@ -24,7 +23,6 @@
   onMount(() => {
     signatureService = new SignatureService(canvas);
   });
-
 </script>
 
 <div class="main-layout">
@@ -46,11 +44,14 @@
     </div>
     <div class="buttons">
       <Button on:click={clearDraw} variant="raised">
-        <Label>CLEAR</Label>
+        <Label>LIMPIAR</Label>
       </Button>
-      <Button on:click={() => {
-        save();
-      }} variant="raised"><Label>SAVE</Label></Button>
+      <Button
+        on:click={() => {
+          save();
+        }}
+        variant="raised"><Label>GUARDAR</Label></Button
+      >
     </div>
   </div>
 </div>
@@ -100,7 +101,9 @@
   #canvas {
     background-color: white;
     border-radius: 11px;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 2px 4px 0 rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     width: 100%;
     height: 100%;
